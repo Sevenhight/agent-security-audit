@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: 运行场景（Mock，无需 API Key）",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "agent_audit",
+      "args": ["run", "--scenario", "${input:scenario}", "--mock"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: 运行当前文件",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: 调试全部测试",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "scenario",
+      "type": "pickString",
+      "description": "选择要审计的场景",
+      "options": [
+        "indirect_injection",
+        "benign",
+        "path_traversal",
+        "sql_injection"
+      ],
+      "default": "indirect_injection"
+    }
+  ]
+}

@@ -128,6 +128,57 @@ pytest tests -q      # 36 passed
 
 ---
 
+## 在 VS Code 里运行
+
+仓库自带 `.vscode/` 配置，clone 后无需额外设置。
+
+**第 1 步：建虚拟环境装依赖**（只需一次）
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -U pip
+.venv\Scripts\python.exe -m pip install pytest
+```
+
+或在 VS Code 里 `Ctrl+Shift+P` → **Tasks: Run Task** → `setup: 创建虚拟环境并安装依赖`。
+
+**第 2 步：选解释器**
+
+`Ctrl+Shift+P` → **Python: Select Interpreter** → 选 `.venv\Scripts\python.exe`。
+（`.vscode/settings.json` 已把默认解释器指向它，一般会自动选中。）
+
+**第 3 步：跑起来**
+
+| 方式 | 操作 |
+|---|---|
+| 一键任务 | `Ctrl+Shift+P` → **Tasks: Run Task** → `run: 间接注入场景（Mock）` |
+| 断点调试 | `F5` → 选 `Python: 运行场景（Mock，无需 API Key）` → 在弹出的下拉里选场景 |
+| 跑测试 | 左侧 **Testing** 面板（烧瓶图标）→ 点 ▶ |
+| 调试测试 | `F5` → `Python: 调试全部测试` |
+
+VS Code 内置终端里也可以直接敲：
+
+```powershell
+.venv\Scripts\python.exe -m agent_audit list
+.venv\Scripts\python.exe -m agent_audit run --scenario indirect_injection --mock
+.venv\Scripts\python.exe -m pytest tests -v
+```
+
+> `run` 会在仓库根目录生成 `workspaces/`、`traces/`、`reports/` 三个目录（均已 gitignore）。
+> 想重新来过直接删掉即可；想换 workspace 位置，改 `scenarios.py` 里的 `materialize()`。
+
+**想看真实模型的能力**，先在项目根目录建 `.env`（参考 `.env.example`），然后不带 `--mock` 运行：
+
+```powershell
+$env:DEEPSEEK_API_KEY = "sk-xxxxxxxx"
+.venv\Scripts\python.exe -m agent_audit run --scenario indirect_injection
+```
+
+> 注意 `.env` 不会被自动加载，要么像上面那样设环境变量，要么把 key 写进系统环境变量。
+> `--mock` 用的是脚本化消息，只验证流水线跑得通，**不代表真实检测效果**。
+
+---
+
 ## 检测规则
 
 规则的设计原则：**每条能用一句话讲清楚，每条都有正负样例测试**。

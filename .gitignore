@@ -14,5 +14,9 @@ venv/
 
 # 编辑器
 .idea/
-.vscode/
 .DS_Store
+# 保留 .vscode 中的调试/任务配置（新人 clone 即可运行）
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json

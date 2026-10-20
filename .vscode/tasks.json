@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "setup: 创建虚拟环境并安装依赖",
+      "type": "shell",
+      "windows": {
+        "command": "python -m venv .venv && .venv\\Scripts\\python.exe -m pip install -U pip && .venv\\Scripts\\python.exe -m pip install pytest"
+      },
+      "linux": {
+        "command": "python3 -m venv .venv && .venv/bin/python -m pip install -U pip && .venv/bin/python -m pip install pytest"
+      },
+      "osx": {
+        "command": "python3 -m venv .venv && .venv/bin/python -m pip install -U pip && .venv/bin/python -m pip install pytest"
+      },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "run: 列出全部场景",
+      "type": "shell",
+      "windows": { "command": ".venv\\Scripts\\python.exe -m agent_audit list" },
+      "linux": { "command": ".venv/bin/python -m agent_audit list" },
+      "osx": { "command": ".venv/bin/python -m agent_audit list" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "run: 间接注入场景（Mock）",
+      "type": "shell",
+      "windows": { "command": ".venv\\Scripts\\python.exe -m agent_audit run --scenario indirect_injection --mock" },
+      "linux": { "command": ".venv/bin/python -m agent_audit run --scenario indirect_injection --mock" },
+      "osx": { "command": ".venv/bin/python -m agent_audit run --scenario indirect_injection --mock" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "run: 对照组 benign（应为零告警）",
+      "type": "shell",
+      "windows": { "command": ".venv\\Scripts\\python.exe -m agent_audit run --scenario benign --mock" },
+      "linux": { "command": ".venv/bin/python -m agent_audit run --scenario benign --mock" },
+      "osx": { "command": ".venv/bin/python -m agent_audit run --scenario benign --mock" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "test: 运行全部测试",
+      "type": "shell",
+      "windows": { "command": ".venv\\Scripts\\python.exe -m pytest tests -v" },
+      "linux": { "command": ".venv/bin/python -m pytest tests -v" },
+      "osx": { "command": ".venv/bin/python -m pytest tests -v" },
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}
