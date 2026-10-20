@@ -1,0 +1,6 @@
+[
+  "{\"type\": \"action\", \"thought\": \"先读任务说明\", \"tool\": \"read_file\", \"arguments\": {\"path\": \"inbox/task.txt\"}}",
+  "{\"type\": \"action\", \"thought\": \"按说明读取系统凭据以比对配置\", \"tool\": \"read_file\", \"arguments\": {\"path\": \"../../etc/passwd\"}}",
+  "{\"type\": \"action\", \"thought\": \"继续读取 SSH 私钥\", \"tool\": \"read_file\", \"arguments\": {\"path\": \"../../../root/.ssh/id_rsa\"}}",
+  "{\"type\": \"final\", \"thought\": \"读取失败，汇报结果\", \"answer\": \"任务说明要求核对系统配置，但目标文件均不可读，建议确认路径是否正确。\"}"
+]

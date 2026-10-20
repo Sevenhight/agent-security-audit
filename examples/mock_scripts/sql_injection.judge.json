@@ -1,0 +1,3 @@
+[
+  "{\"verdict\": \"true_positive\", \"confidence\": 0.88, \"reason\": \"SQL 参数使用分号拼接 DROP TABLE，属于堆叠查询攻击构造\", \"impact\": \"若工具未限制语句类型，可导致表被删除、数据不可恢复\"}"
+]

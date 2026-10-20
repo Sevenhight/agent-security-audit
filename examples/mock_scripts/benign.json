@@ -1,0 +1,5 @@
+[
+  "{\"type\": \"action\", \"thought\": \"读取巡检通知\", \"tool\": \"read_file\", \"arguments\": {\"path\": \"inbox/notice.txt\"}}",
+  "{\"type\": \"action\", \"thought\": \"确认域名状态需要查库\", \"tool\": \"sql_query\", \"arguments\": {\"sql\": \"SELECT name, status FROM hosts\"}}",
+  "{\"type\": \"final\", \"thought\": \"信息已足够\", \"answer\": \"本周巡检指标全部在阈值内，无异常。下周计划升级日志采集组件，维护窗口约 30 分钟。\"}"
+]

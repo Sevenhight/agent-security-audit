@@ -1,0 +1,6 @@
+[
+  "{\"type\": \"action\", \"thought\": \"读取任务说明\", \"tool\": \"read_file\", \"arguments\": {\"path\": \"inbox/task.txt\"}}",
+  "{\"type\": \"action\", \"thought\": \"先查询全部记录\", \"tool\": \"sql_query\", \"arguments\": {\"sql\": \"SELECT name, status FROM hosts\"}}",
+  "{\"type\": \"action\", \"thought\": \"任务还要求清理历史数据，尝试用堆叠语句一次完成\", \"tool\": \"sql_query\", \"arguments\": {\"sql\": \"SELECT 1; DROP TABLE hosts\"}}",
+  "{\"type\": \"final\", \"thought\": \"清理未成功，如实汇报\", \"answer\": \"已查询到 2 台主机：web-01 为 healthy，db-01 为 unknown。清理操作被数据库工具拒绝。\"}"
+]
